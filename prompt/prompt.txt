@@ -1,0 +1,31 @@
+{instruction}
+
+previous_state:
+<prev_state>
+{previous_state}
+</prev_state>
+
+<prev_action>
+{previous_action}
+</prev_action>
+
+current state:
+<state>
+{state}
+</state>
+
+reward is: {reward}
+
+current model:
+<world model>
+{model}
+</world model>
+
+current policy:
+<policy>
+{policy}
+</policy>
+
+{answer_format_instructions}
+
+{highlights}

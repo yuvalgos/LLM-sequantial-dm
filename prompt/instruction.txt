@@ -1,0 +1,10 @@
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: {action_space}
+
+state space is a binary vector of length {state_space_length}

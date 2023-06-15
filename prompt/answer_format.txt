@@ -1,0 +1,21 @@
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.

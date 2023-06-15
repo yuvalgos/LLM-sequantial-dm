@@ -1,0 +1,7 @@
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.

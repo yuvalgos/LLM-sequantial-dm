@@ -1,0 +1,23 @@
+{instruction}
+
+initial state:
+<state>
+{state}
+</state>
+
+{answer_format_instructions}
+
+{highlights}
+
+here are some examples for how a policy and a world model should look like in a different environment,
+ where the state space is a binary vector of length 6, and the action is one of
+ 0,1,2,4,5,6:
+<world_model>
+action i flips vector i and action 6 is no-op.
+The reward is hamming distance between the state and this state: [0,0,1,0,0,0]
+</world_model>
+
+<policy>
+perform flip action to the leftest bit that is different from the corresponding bit in the target state [0,0,1,0,0,0]
+</policy>
+

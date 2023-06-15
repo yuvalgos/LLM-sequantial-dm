@@ -1,0 +1,1 @@
+keep policy and model short, concise, explicit and not abstract; but you still have to represent the policy and model in free language.

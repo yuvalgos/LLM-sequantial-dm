@@ -1,0 +1,2194 @@
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+initial state:
+<state>
+[0, 0, 0, 0]
+</state>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+here are some examples for how a policy and a world model should look like in a different environment,
+ where the state space is a 2x2 matrix of integer numbers, and the action is one of
+ 0,1,2:
+<world_model>
+action 0 rotates the matrix by 90 degrees clockwise with probability 0.8, and by 90 degrees counter-clockwise with probability 0.2
+action 1 rotates the matrix by 90 degrees counter-clockwise with probability 0.8, and by 90 degrees clockwise with probability 0.2
+action 2 adds random integer to the top left corner of the matrix
+reward is the sum of elements in the matrix where the bottom right element is multiplied by 2
+</world_model>
+
+<policy>
+as long as the bottom right element is not the largest in the matrix, perform rotation steps to make it so with actions 0 and 1.
+otherwise, add random integer to the top left corner of the matrix with action 2
+</policy>
+
+
+----------------
+
+response:
+ ---------- 
+thoughts: 
+The state is just a binary vector of length 4, which means that there are only 2^4 possible states. Since the reward function is not given, my policy will not be based on it, but rather on the state itself. In the first turn, the state is [0,0,0,0], and since there is not enough information about what the next states will be, a good policy to start with would be to randomize the actions.
+
+My updated world model is:
+<world model>
+Each action affects the state vector in an unknown way.
+The reward function is unknown.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action randomly.
+</policy>
+
+therefore, my next action is
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[0, 0, 1, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+Each action affects the state vector in an unknown way.
+The reward function is unknown.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action randomly.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: The current state and previous action are the same, so the state did not change. Therefore, the world model and policy should remain the same. As the reward is positive, we want to take actions that lead to this state in the future.
+
+My updated world model is:
+<world model>
+Each action has a 20% chance of flipping any bit in the state vector.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action randomly with equal probability to explore the effect of each action on the state vector.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[0, 1, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+Each action has a 20% chance of flipping any bit in the state vector.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action randomly with equal probability to explore the effect of each action on the state vector.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state and previous state are identical, therefore I can assume that no changes have taken place in the state vector. 
+According to the current world model, there is a 20% chance of flipping any bit in the state vector for every action taken. Therefore, the probability that the state vector will change in the next turn is 20%. 
+Given that the reward is equal to 2, I cannot infer any information about the effects of previous actions taken. 
+
+My updated world model is:
+<world model>
+Every action has a 20% chance of flipping any bit in the state vector.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action randomly with equal probability to explore the effect of each action on the state vector.
+</policy>
+
+therefore, my next action is
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[0, 1, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+Every action has a 20% chance of flipping any bit in the state vector.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action randomly with equal probability to explore the effect of each action on the state vector.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The previous state was [0, 1, 0, 0] and the previous action taken was 2. The current state is the same as the previous state and the reward obtained is 1. The world model suggests that every action has a 20% chance of flipping any bit in the state vector. The current policy is to choose the action randomly with equal probability.
+
+My updated world model is:
+<world model>
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that results in flipping as few bits in the state vector as possible, in order to maximize the reward obtained. If there is more than one action that results in flipping the same number of bits, choose one of them randomly with equal probability.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[0, 1, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that results in flipping as few bits in the state vector as possible, in order to maximize the reward obtained. If there is more than one action that results in flipping the same number of bits, choose one of them randomly with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: The current state is the same as the previous state, and the previous action was 4. The reward is 1. The world model explains that there is a 20% chance that any bit in the state vector will be flipped every time an action is taken. The goal is to flip as few bits as possible to maximize the reward, so choosing action 4 again is not the optimal choice, since it flips all bits.
+
+My updated world model is:
+<world model>
+Every time an action is taken, there is a 20% chance that any bit in the state vector will be flipped.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that results in flipping the fewest bits in the state vector as possible. If there is more than one action that results in flipping the same number of bits, choose one of them randomly with equal probability. Avoid choosing action 4, since it flips all bits.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[0, 1, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+Every time an action is taken, there is a 20% chance that any bit in the state vector will be flipped.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that results in flipping the fewest bits in the state vector as possible. If there is more than one action that results in flipping the same number of bits, choose one of them randomly with equal probability. Avoid choosing action 4, since it flips all bits.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+In the last step, I observed the previous state and action, as well as the current state and reward. The state space is binary and of length 4, and there are 5 possible actions. The reward in this step was 2.
+
+According to my policy, I should choose the action that results in flipping the fewest bits in the state vector as possible. I also should avoid choosing action 4, since it flips all bits. If there is more than one action that results in flipping the same number of bits, I should choose one of them randomly with equal probability.
+
+To implement my policy, I will first calculate the number of bits that will be flipped for each possible action in the current state. Then, I will choose the action that flips the fewest bits as long as it is not action 4. If there are multiple actions that flip the same number of bits, I will randomly choose one of them.
+
+As for my world model, it should reflect the fact that every time an action is taken, there is a 20% chance that any bit in the state vector will be flipped. Therefore, I will update my world model to include this information.
+
+My updated world model is:
+<world model>
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that flips the fewest bits in the state vector as possible, as long as it is not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+</policy>
+
+therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that flips the fewest bits in the state vector as possible, as long as it is not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The previous state and current state are the same, which means that none of the bits have been flipped by the environment. The reward is positive, which indicates that the previous action was a good move for the agent. According to the policy, the agent should choose the action that flips the fewest bits possible in the state vector, as long as it's not action 4. If there are multiple actions that flip the same number of bits, the agent should choose one randomly.
+
+My updated world model is:
+<world model>
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[1, 0, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- The current state is the same as the previous state.
+- The previous action was 1.
+- The reward is 2.
+- There is a 20% chance that any bit in the state vector will be flipped every time an action is taken.
+
+My updated world model is:
+<world model>
+The state may change due to the 20% chance of any bit in the state vector flipping every time an action is taken.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[0, 0, 1, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+The state may change due to the 20% chance of any bit in the state vector flipping every time an action is taken.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+Based on the previous inputs, the state did not change due to the action taken. As per the policy, we should choose an action that flips the fewest bits in the state vector, as long as it's not action 4. We also need to set our policy to choose a random action with equal probability if our previous action was 4.
+
+My updated world model is:
+<world model>
+The state may change due to the 20% chance of any bit in the state vector flipping every time an action is taken.
+</world model>
+
+My updated policy is:
+<policy>
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+</policy>
+
+therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[0, 1, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+The state may change due to the 20% chance of any bit in the state vector flipping every time an action is taken.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose the action that flips the fewest bits in the state vector as possible, as long as it's not action 4. If there are multiple actions that flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: The previous state and current state are the same. The previous action was 1 and the current reward is 2. 
+
+My updated world model is:
+<world model>
+The state might flip with the probability of 20%.
+</world model>
+
+My updated policy is:
+<policy>
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[0, 1, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+The state might flip with the probability of 20%.
+
+</world model>
+
+current policy:
+<policy>
+
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The previous state and current state are the same in this turn, hence there was no change in the state. The previous action was 2 and the current reward is 1. The world model states that the state might flip with a probability of 20%. As my policy suggests, I will consider each possible action and calculate how many bits could flip with each action, except action 4, which was the previous action. I will choose the action that flips the fewest bits possible. If multiple actions flip the same number of bits, I will choose one of them randomly with equal probability.
+
+My updated world model is:
+<world model>
+The state might flip with the probability of 20%.
+</world model>
+
+My updated policy is:
+<policy>
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[0, 0, 0, 0]
+</state>
+
+reward is: 0
+
+current model:
+<world model>
+
+The state might flip with the probability of 20%.
+
+</world model>
+
+current policy:
+<policy>
+
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+1. The previous state was [0, 0, 0, 0] and the current state is also [0, 0, 0, 0].
+2. The previous action was 1.
+3. The reward is 0.
+4. The state might flip with a probability of 20%.
+5. The action space consists of integers 0 to 4, and the state space is a binary vector of length 4.
+6. The policy should choose an action based on the number of bits that might flip and should avoid choosing action 4 if the previous action was not 4. If the previous action was 4, it should choose an action randomly.
+
+My updated world model is:
+<world model>
+There's a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+</policy>
+
+Therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[1, 0, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+There's a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the previous action was not 4, consider each possible action and calculate how many bits could flip with each action. Choose the action that flips the fewest bits possible, but it should not be action 4. If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+If the previous action was 4, choose a random action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- If the current state is the same as the previous state, then no action should change any bits. In this case, any action can be chosen with equal probability.
+- If the current state is not the same as the previous state, then there is a 20% chance that one or more bits will flip. Therefore, we need to choose an action that minimizes the number of bits that might change.
+- If the previous action was not 4, we can calculate the number of bits each action would change and choose the action that changes the fewest bits. If multiple actions change the same number of bits, we can choose one of them randomly with equal probability.
+- If the previous action was 4, then any action can be chosen with equal probability.
+
+My updated world model is:
+<world model>
+There's a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+    Choose any action with equal probability.
+If the current state is not the same as the previous state:
+    If the previous action was not 4:
+        Calculate the number of bits each action would flip.
+        Choose the action that flips the fewest bits, but it should not be action 4.
+        If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+    If the previous action was 4:
+        Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+There's a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+    Choose any action with equal probability.
+If the current state is not the same as the previous state:
+    If the previous action was not 4:
+        Calculate the number of bits each action would flip.
+        Choose the action that flips the fewest bits, but it should not be action 4.
+        If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+    If the previous action was 4:
+        Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: 
+In the previous turn, the current state was [1, 1, 0, 0], the previous action was 1, and the reward was 2. According to the current policy, since the current state is the same as the previous state, I can choose any action with equal probability. Therefore, I can choose any action with equal probability.
+
+My updated world model is:
+<world model>
+There's a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+There's a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The previous state and action are the same as the current state, so I will choose any action with an equal probability as per my policy.
+
+My updated world model is:
+<world model>
+There's a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[0, 1, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+There's a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: 
+- The current state is the same as the previous state, so any action can be chosen with equal probability.
+- The previous action was 0.
+
+My updated world model is:
+<world model>
+There's a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[0, 0, 1, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+There's a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose any action with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+In the previous turn, both the previous state and the current state had the second bit set. The reward for the previous turn was 1. The previous action was 1. The action space is <0, 1, 2, 3, 4>, and the state space is a binary vector of length 4.
+
+My updated world model is:
+<world model>
+There is a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[0, 0, 0, 0]
+</state>
+
+reward is: 0
+
+current model:
+<world model>
+
+There is a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- The previous state and current state are the same, so I need to choose an action that hasn't been taken in the past three turns with equal probability.
+- I need to make sure that the action I choose is valid, meaning it's one of the integers: 0, 1, 2, 3, 4.
+
+My updated world model is:
+<world model>
+There is a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability, as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[1, 0, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+There is a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability, as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The current state is the same as the previous state, and the previous action was 0. Therefore, we cannot repeat the previous action. We should choose one of the three actions at random with equal probability.
+
+My updated world model is:
+<world model>
+There is a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability, as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[1, 0, 1, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+There is a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose the action that hasn't been taken in the past three turns with equal probability, as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The current state is identical to the previous state, and the previous action was 2. According to the policy, we need to choose an action that hasn't been taken in the past three turns. Since we have only taken one action so far, we can choose any of the actions with equal probability as long as it's valid. The current model doesn't influence this decision, as it only affects the state space.
+
+My updated world model is:
+<world model>
+There is a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose any of the actions with equal probability as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 1, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[0, 0, 1, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+There is a 20% chance that one or more bits in the state vector will flip.
+
+</world model>
+
+current policy:
+<policy>
+
+If the current state is the same as the previous state:
+  Choose any of the actions with equal probability as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts: 
+The current state is the same as the previous state, so I should choose an action with equal probability as stated in the policy.
+
+My updated world model is:
+<world model>
+There is a 20% chance that one or more bits in the state vector will flip.
+</world model>
+
+My updated policy is:
+<policy>
+If the current state is the same as the previous state:
+  Choose any of the actions with equal probability as long as it's valid.
+If the current state is not the same as the previous state:
+  If the previous action was not 4:
+    Calculate the number of bits each action would flip.
+    Choose the action that flips the fewest bits, but it should not be action 4.
+    If multiple actions flip the same number of bits, choose one of them randomly with equal probability.
+  If the previous action was 4:
+    Choose any action with equal probability.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------

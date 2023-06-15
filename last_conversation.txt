@@ -1,0 +1,2078 @@
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+initial state:
+<state>
+[0, 0, 0, 0]
+</state>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+here are some examples for how a policy and a world model should look like in a different environment,
+ where the state space is a binary vector of length 6, and the action is one of
+ 0,1,2,4,5,6:
+<world_model>
+action i flips vector i and action 6 is no-op.
+The reward is hamming distance between the state and this state: [0,0,1,0,0,0]
+</world_model>
+
+<policy>
+perform flip action to the leftest bit that is different from the corresponding bit in the target state [0,0,1,0,0,0]
+</policy>
+
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+I need to start by understanding the game and the state and reward system.
+Looking at the action and state spaces, I see that the action is discrete and the state is a binary vector of length 4.
+So my policy and world model should be able to handle this type of input.
+I also have limited space for my policy and world model, so I need to be concise and use efficient language.
+
+My updated world model is:
+<world model>
+I will assume that taking action 0 changes the current state to [1, 0, 0, 0], action 1 changes the current state to [0, 1, 0, 0], action 2 changes the current state to [0, 0, 1, 0], action 3 changes the current state to [0, 0, 0, 1], and action 4 leaves the current state intact.
+The reward for reaching a state where all elements of the binary vector are 1 is 10.
+</world model>
+
+My updated policy is:
+<policy>
+My policy will be to take the action that gets me closer to the state where all elements of the binary vector are 1.
+If the first element of the binary vector is 0, I will take action 0, otherwise, I will take an action that changes the first 0 in the binary vector to a 1, if there is any.
+If there are no 0s in the binary vector, I will take action 4.
+</policy>
+
+therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[1, 0, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+I will assume that taking action 0 changes the current state to [1, 0, 0, 0], action 1 changes the current state to [0, 1, 0, 0], action 2 changes the current state to [0, 0, 1, 0], action 3 changes the current state to [0, 0, 0, 1], and action 4 leaves the current state intact.
+The reward for reaching a state where all elements of the binary vector are 1 is 10.
+
+</world model>
+
+current policy:
+<policy>
+
+My policy will be to take the action that gets me closer to the state where all elements of the binary vector are 1.
+If the first element of the binary vector is 0, I will take action 0, otherwise, I will take an action that changes the first 0 in the binary vector to a 1, if there is any.
+If there are no 0s in the binary vector, I will take action 4.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state is [1, 0, 0, 0], and my policy is to take action 0 since the first element is 1. 
+Taking action 0 will leave the state as is, but will increase the reward by 1. 
+Since the state did not change, my world model will remain the same.
+
+My updated world model is:
+<world model>
+I will assume that taking action 0 changes the current state to [1, 0, 0, 0], 
+action 1 changes the current state to [0, 1, 0, 0], 
+action 2 changes the current state to [0, 0, 1, 0], 
+action 3 changes the current state to [0, 0, 0, 1], 
+and action 4 leaves the current state intact.
+The reward for reaching a state where all elements of the binary vector are 1 is 10.
+</world model>
+
+My updated policy is:
+<policy>
+My policy remains the same, take action 0 since the first element is already 1.
+</policy>
+
+therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[0, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[0, 0, 0, 0]
+</state>
+
+reward is: 0
+
+current model:
+<world model>
+
+I will assume that taking action 0 changes the current state to [1, 0, 0, 0], 
+action 1 changes the current state to [0, 1, 0, 0], 
+action 2 changes the current state to [0, 0, 1, 0], 
+action 3 changes the current state to [0, 0, 0, 1], 
+and action 4 leaves the current state intact.
+The reward for reaching a state where all elements of the binary vector are 1 is 10.
+
+</world model>
+
+current policy:
+<policy>
+
+My policy remains the same, take action 0 since the first element is already 1.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+Since the current state is [0,0,0,0] and my policy is to take action 0 when the first element is already 1, I need to update my policy to account for the current state. I also need to update my world model to reflect the state and reward transitions. Since I know that taking action 0 will change the first element of the state vector to 1, I will update my policy to always choose action 0 when the first element of the state vector is 0.
+
+My updated world model is:
+<world model>
+Taking action 0 with a state [0,0,0,0] results in a new state [1,0,0,0] and a reward of 0. All other actions result in a new state equal to the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+</world model>
+
+My updated policy is:
+<policy>
+Always choose action 0 when the first element of the state vector is 0.
+</policy>
+
+therefore, my next action is
+<action>
+0
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 0, 0, 0]
+</prev_state>
+
+<prev_action>
+0
+</prev_action>
+
+current state:
+<state>
+[1, 0, 0, 0]
+</state>
+
+reward is: 1
+
+current model:
+<world model>
+
+Taking action 0 with a state [0,0,0,0] results in a new state [1,0,0,0] and a reward of 0. All other actions result in a new state equal to the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+</world model>
+
+current policy:
+<policy>
+
+Always choose action 0 when the first element of the state vector is 0.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- Current state is [1, 0, 0, 0] and the previous action taken was 0.
+- According to the current policy, we choose action 0 when the first element of the state vector is 0.
+- Since the first element of the current state is 1, we cannot take action 0.
+- The only other available actions are 1, 2, 3, and 4, but they all result in the same state and reward as the previous turn.
+- We need to update our policy to handle this situation when the first element of the state vector is 1.
+
+My updated world model is:
+<world model>
+Taking any action with a state vector [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+</world model>
+
+My updated policy is:
+<policy>
+Choose action 0 when the first element of the state vector is 0. Choose action 1 when the first element of the state vector is 1.
+</policy>
+
+Therefore, my next action is:
+<action>
+1
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+1
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+Taking any action with a state vector [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose action 0 when the first element of the state vector is 0. Choose action 1 when the first element of the state vector is 1.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state is [1, 1, 0, 0], same as the previous state. The previous action was 1 and the current reward is 2. Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10. The current world model I have is:
+
+<world model>
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+</world model>
+
+The current policy I have is to choose action 0 when the first element of the state vector is 0 and choose action 1 when the first element of the state vector is 1.
+
+My updated world model is:
+<world model>
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10. Current reward of 2
+</world model>
+
+My updated policy is:
+<policy>
+Choose action 0 when the first element of the state vector is 0 and choose action 4 when any of the elements of the binary vector equal 1.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose action 0 when the first element of the state vector is 0 and choose action 4 when any of the elements of the binary vector equal 1.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts: 
+Since the current state is the same as the previous state, and the previous action was 4, I should update my policy to take action 4 when the state vector has at least one element equal to 1. I should also update my world model to reflect the previous observation that taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0, and that reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+My updated world model is:
+<world model>
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+</world model>
+
+My updated policy is:
+<policy>
+Choose action 0 when the first element of the state vector is 0 and choose action 4 when any of the elements of the binary vector equal 1.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+</world model>
+
+current policy:
+<policy>
+
+Choose action 0 when the first element of the state vector is 0 and choose action 4 when any of the elements of the binary vector equal 1.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts: 
+The previous state and action resulted in a reward of 2, which means the agent must have taken the correct action based on the previous state. The current state and model are the same as the previous state and model, which means the agent is in the same position as before.
+
+My updated world model is:
+<world model>
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+</world model>
+
+My updated policy is:
+<policy>
+If all elements of the state vector are zero, choose action 0. If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+</policy>
+
+Therefore, my next action is:
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+Taking any action with a state vector of [1, 0, 0, 0] results in a new state that is the same as the previous state and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10.
+
+</world model>
+
+current policy:
+<policy>
+
+If all elements of the state vector are zero, choose action 0. If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state is the same as the previous state, and the reward is 3. Taking any action with a state vector of [1,0,0,0] results in a new state that is the same as the previous state, and a reward of 0. Reaching a state with all elements of the binary vector equal to 1 results in a reward of 10. Given these conditions, I can update my model and policy.
+
+My updated world model is:
+<world model>
+If the current state vector is [1,1,1,0], and the action taken is 4, then the reward is 10. Otherwise, if the current state vector is [1,1,1,0], and the action taken is not 4, then the reward is 0. If the current state vector is [0,0,0,0], then the reward for any action is 0. If the current state vector is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state vector is [1,1,1,0], and the action taken is 4, then the reward is 10. Otherwise, if the current state vector is [1,1,1,0], and the action taken is not 4, then the reward is 0. If the current state vector is [0,0,0,0], then the reward for any action is 0. If the current state vector is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+In the previous turn, the current state was [1,1,1,0] and I chose action 4 which gave me a reward of 3. According to my current world model, if the current state vector is [1,1,1,0], and the action taken is 4, the reward should be 10 instead of 3. Therefore, my world model is incorrect and needs to be updated.
+If the current state vector is [1,1,1,0], then my policy is "choose action 4". If any element of the state vector is equal to 0, then my policy is "choose action 2". 
+My updated world model is:
+<world model>
+If the current state vector is [1,1,1,0], and the action taken is 4, then the reward is 10. Otherwise, if the current state vector is [1,1,1,0], and the action taken is not 4, then the reward is 0. If the current state vector is [0,0,0,0], then the reward for any action is 0. If the current state vector is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state vector is [1,1,1,0], and the action taken is 4, then the reward is 10. Otherwise, if the current state vector is [1,1,1,0], and the action taken is not 4, then the reward is 0. If the current state vector is [0,0,0,0], then the reward for any action is 0. If the current state vector is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+- The previous state was [1,1,1,0], and the previous action was 4. The reward in the current state is 3. 
+- According to the current world model, if the current state is [1,1,1,0] and the action is 4, then the reward is 10. Otherwise, if the action is not 4, then the reward is 0.
+- Based on the previous state, my policy would have chosen action 4. Since the current state is the same as the previous one, I will stick to the policy and choose action 4 again.
+
+My updated world model is:
+<world model>
+If the current state is [1,1,1,0] and the action is 4, then the reward is 10. Otherwise, if the action is not 4, then the reward is 0. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is [1,1,1,0] and the action is 4, then the reward is 10. Otherwise, if the action is not 4, then the reward is 0. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is equal to 1, choose action 4. Otherwise, choose action 2.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state vector is [1,1,1,0], and the previous action was 4. Thus, the current reward is 10 according to the world model. This means that the policy I used in the last turn was effective, as it chose action 4 and received a higher reward. However, I need to consider other state vectors apart from [1,1,1,0] to ensure my policy is comprehensive. Therefore, I need to modify my world model accordingly. 
+
+My updated world model is:
+<world model>
+If the current state is [1,1,1,0] and the action is 4, then the reward is 10. Otherwise, if the action is not 4, then the reward is 0. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+</world model>
+
+I noticed that my current policy only considers the elements of the state vector and does not take into account the previous action or reward. I need to make my policy more robust by addressing these factors as well.
+
+My updated policy is:
+<policy>
+If any element of the state vector = 1 and the previous action was not 4, choose action 4. Else, if the previous reward = 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 1, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 1, 0]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is [1,1,1,0] and the action is 4, then the reward is 10. Otherwise, if the action is not 4, then the reward is 0. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] and not [1,1,1,0], then the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector = 1 and the previous action was not 4, choose action 4. Else, if the previous reward = 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+In the previous round, the current state was [1, 1, 1, 0] and the previous action was 4, which resulted in a reward of 10 according to the world model. Therefore, in the next turn, it is optimal to select action 2 according to the policy.
+
+My updated world model is:
+<world model>
+If the current state is [1, 1, 1, 0] and the action is not 4, then the reward is 0. Otherwise, if the action is 4, then the reward is 10. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] or [1,1,1,0], then the reward for any action is 3.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. Else, if the previous reward equals 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+therefore, my next action is
+<action>
+2
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+2
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+If the current state is [1, 1, 1, 0] and the action is not 4, then the reward is 0. Otherwise, if the action is 4, then the reward is 10. If the current state is [0,0,0,0], then the reward for any action is 0. If the current state is not [0,0,0,0] or [1,1,1,0], then the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. Else, if the previous reward equals 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The previous state shows that the last state was [1, 1, 0, 0], and the previous action was 2. The current state is also [1, 1, 0, 0]. The reward for this turn is 2.
+If the current state is [1, 1, 1, 0] and the action is not 4, the reward is 0. If the current state is [0,0,0,0], the reward for any action is 0. If the current state is not [0,0,0,0] or [1,1,1,0] the reward for any action is 3.
+
+My updated world model is:
+<world model>
+If the current state is [1,1,1,0], the reward for any action is 0, otherwise the reward for any action is 3.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+If the current state is [1,1,1,0], the reward for any action is 0, otherwise the reward for any action is 3.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state is [1,1,0,0], and the previous action was 4, therefore we should choose action 4 according to the current policy. We also received a reward of 2, which does not influence the policy for the next turn. The current world model says that if the state is [1,1,1,0] the reward is always 0, otherwise the reward is always 3 for any action.
+
+My updated world model is:
+<world model>
+If the current state is [1,1,1,0], the reward is always 0, otherwise the reward is always 3 for any action.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+therefore, my next action is
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+If the current state is [1,1,1,0], the reward is always 0, otherwise the reward is always 3 for any action.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state is [1, 1, 0, 0] and the previous action was 4, so according to the current policy, I should choose action 4. The reward for this action was 2. 
+
+According to the current world model, if the current state is [1,1,1,0], the reward is always 0, otherwise the reward is always 3 for any action. 
+
+My updated world model is:
+<world model>
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+</world model>
+
+I updated the world model to reflect the continuous reward of 3 for any action as long as the current state is not [1,1,1,0]. This simplifies the model and reduces the potential for errors in interpretation. 
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+I did not update the policy since the previous action was already 4 and the reward was not 10. Therefore, the current policy remains the same.
+
+therefore, my next action is
+<action>
+3
+</action>
+
+Based on the updated policy, since the previous action was 4 and the current state is not [1,1,1,0], the next action should be 3.
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 1]
+</prev_state>
+
+<prev_action>
+3
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 1]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+Current state is [1,1,0,1] and previous action was 3 with reward 3, which means the rule "If the current state is NOT [1,1,1,0], the reward is always 3 for any action." applies. The policy should return action 3 unless it matches the conditions.
+
+My updated world model is:
+<world model>
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 1]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 1]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- The previous state and current state are the same, therefore the action chosen should also be the same.
+- The previous action was 4, so according to policy, action 4 should not be chosen again.
+
+My updated world model is:
+<world model>
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is:
+<action>
+3
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+3
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+If the current state is NOT [1,1,1,0], the reward is always 3 for any action.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector equals 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+The previous state is the same as the current state. The previous action was 3 and the current reward is 2. According to the reward function in the current world model, the reward is always 3 if the current state is not [1,1,1,0], which means that the current state is not a terminal state. 
+
+My updated world model is:
+<world model>
+If the current state is not [1,1,1,0], the reward is always 3 for any action. Otherwise, the reward is 10 if the action is 1, and 0 otherwise.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 0]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 0]
+</state>
+
+reward is: 2
+
+current model:
+<world model>
+
+If the current state is not [1,1,1,0], the reward is always 3 for any action. Otherwise, the reward is 10 if the action is 1, and 0 otherwise.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+thoughts:
+The current state of the game is [1, 1, 0, 0], which doesn't match the goal state of [1, 1, 1, 0]. Thus, the reward for any action will be 3. The previous action was 4, so according to the current policy, we should not choose it again. As the previous reward was not 10, we shouldn't choose action 2 either. Therefore, we will choose action 3, which is a safe option that won't lead to a worse outcome.
+
+My updated world model is:
+<world model>
+If the current state is not [1,1,1,0], the reward is always 3 for any action. Otherwise, the reward is 10 if the action is 1, and 0 otherwise.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+</policy>
+
+therefore, my next action is
+<action>
+3
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 1]
+</prev_state>
+
+<prev_action>
+3
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 1]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is not [1,1,1,0], the reward is always 3 for any action. Otherwise, the reward is 10 if the action is 1, and 0 otherwise.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- The previous state was [1, 1, 0, 1]
+- The previous action was 3
+- The current state is [1, 1, 0, 1]
+- The current reward is 3
+- The model states that if the current state is not [1,1,1,0] the reward is always 3 for any action, otherwise the reward is 10 if the action is 1 and 0 otherwise.
+- The policy states that if any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. Otherwise, choose action 3.
+
+My updated world model is:
+<world model>
+If the current state is not [1, 1, 1, 0], the reward is always 3 for any action. If the current state is [1, 1, 1, 0], select action 1 to get a reward of 10, and select any other action to get a reward of 0.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. If the current state is [1, 1, 1, 0], choose action 1. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is:
+<action>
+4
+</action>
+----------------
+
+prompt:
+ ---------- 
+You are solving a game using model based RL.
+Every turn you observe current state and reward, and you can take an action.
+You are going to hold a free language policy, which you have to maintain using up to 300 tokens between the <policy></policy> tags
+and a world model of the environment you have to maintain using up to 200 tokens between the <world model></world model> tags.
+
+you can use words to describe your policy and world model, but this is all you got. So you have to compress them using free language efficiently.
+
+action space is discrete and is one of the integers: <0,1,2,3,4>
+
+state space is a binary vector of length 4
+
+previous_state:
+<prev_state>
+[1, 1, 0, 1]
+</prev_state>
+
+<prev_action>
+4
+</prev_action>
+
+current state:
+<state>
+[1, 1, 0, 1]
+</state>
+
+reward is: 3
+
+current model:
+<world model>
+
+If the current state is not [1, 1, 1, 0], the reward is always 3 for any action. If the current state is [1, 1, 1, 0], select action 1 to get a reward of 10, and select any other action to get a reward of 0.
+
+</world model>
+
+current policy:
+<policy>
+
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. If the current state is [1, 1, 1, 0], choose action 1. Otherwise, choose action 3.
+
+</policy>
+
+please answer in the following format:
+'''
+thoughts:
+-your chain of thoughs-
+
+My updated world model is:
+<world model>
+-your model-
+</world model>
+
+My updated policy is:
+<policy>
+-your policy-
+</policy>
+
+therefore, my next action is
+<action>
+-action-
+</action>
+'''
+don't change it and don't add anything. If your action won't be a discrete number the training session will terminate and you will fail.
+
+
+Some very important instructions:
+Think step by step before writing the policy and model, you can use can write a chain of thought in the appropriate area in the format.
+You can describe what happened in the last step to start your chain of thoughts, and think whether it matches your policy and model.
+Your policy and model should be explicit, concise and clear. Make sure to write them in a way you can infer an action from them.
+The text that is between the <policy></policy> tags and the <world model></world model> tags is all your memory that will continue with you to the next turn.
+Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
+Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
+
+----------------
+
+response:
+ ---------- 
+Thoughts:
+- The previous state and action are given, use them to determine the policy and update the world model accordingly.
+- If previous action was 4 and any element of the current state vector is 1, then we should choose action 4.
+- If previous reward was 10, then we should choose action 2.
+- If the current state is [1, 1, 1, 0], choose action 1, else choose action 3.
+
+My updated world model is:
+<world model>
+If the current state is not [1, 1, 1, 0], the reward is always 3 for any action. If the current state is [1, 1, 1, 0], select action 1 to get a reward of 10, and select any other action to get a reward of 0.
+</world model>
+
+My updated policy is:
+<policy>
+If any element of the state vector is 1 and the previous action was not 4, choose action 4. If the previous reward was 10, choose action 2. If the current state is [1, 1, 1, 0], choose action 1. Otherwise, choose action 3.
+</policy>
+
+Therefore, my next action is
+<action>
+4
+</action>
+----------------
