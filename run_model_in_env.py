@@ -1,7 +1,7 @@
 from time import sleep
 
 from bit_inversion_envs import VanillaBitInversionEnv
-from LLMAgents import ChatGPT35Agent
+from LLMAgents import ChatGPT35Agent, Davinci3Agent
 
 
 env = VanillaBitInversionEnv(n_bits=4)

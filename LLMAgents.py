@@ -142,3 +142,23 @@ class ChatGPT35Agent(LLMAgent):
         response = res["choices"][0]["message"]["content"]
 
         return response
+
+
+class Davinci3Agent(LLMAgent):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        openai.api_key = os.getenv("OPENAI_CRS_KEY")
+
+        self.tokens_used = 0
+
+    def prompt_model_for_next_step(self, next_prompt):
+        # messages = [{"role": "user", "content": next_prompt},]
+        res = openai.Completion.create(model="text-davinci-003", prompt=next_prompt, max_tokens=2000)
+
+        tokens_used = res["usage"]["total_tokens"]
+        self.tokens_used += tokens_used
+
+        response = res["choices"][0]["text"]
+
+        return response

@@ -48,14 +48,16 @@ The text that is between the <policy></policy> tags and the <world model></world
 Make at least small changes to the policy and model every turn, the changes should have semantic meaning and not just scrambling the words.
 Note the length limits of the policy and model, don't exceed them. Abstract them using free language.
 
-start with the following world model and policy:
-<world model>
-action i flips vector i for i=0,1,2,3 and action 4 is no-op
-reward is the sum of ones int the state vector
-</world model>
+here are some examples for how a policy and a world model should look like in a different environment,
+ where the state space is a binary vector of length 6, and the action is one of
+ 0,1,2,4,5,6:
+<world_model>
+action i flips vector i and action 6 is no-op.
+The reward is hamming distance between the state and this state: [0,0,1,0,0,0]
+</world_model>
 
 <policy>
-perform action that flips the leftest bit that is not one. if all bits are one, perform no-op.
+perform flip action to the leftest bit that is different from the corresponding bit in the target state [0,0,1,0,0,0]
 </policy>
 
 
@@ -63,23 +65,24 @@ perform action that flips the leftest bit that is not one. if all bits are one, 
 
 response:
  ---------- 
-Thoughts: 
-In the last turn, the state vector was [1, 0, 1, 0], and the reward was 2. According to my policy, I need to flip the leftmost bit that is not one, in this case the second bit. 
+
+
+Thought:
+The last action I took was action 0, which resulted in no change. 
 
 My updated world model is:
 <world model>
-action i flips vector i for i=0,1,2,3 and action 4 is no-op
-reward is the sum of ones int the state vector
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 </world model>
 
 My updated policy is:
 <policy>
-perform action that flips the leftmost bit that is not one. if all bits are ones, perform a no-op.
+If bit 0 is different from target state bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target state bit 1, perform Action 2; If both bit 0 and bit 1 are the same as target state bit 0 and bit 1, but bit 2 is different from target state bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are the same as target state bit 0, bit 1, and bit 2, but bit 3 is different from target state bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are the same as target state bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target state bit 4, perform Action 5.
 </policy>
 
 Therefore, my next action is:
 <action>
-1
+0
 </action>
 ----------------
 
@@ -98,16 +101,16 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[0, 1, 0, 0]
+[1, 0, 0, 0]
 </prev_state>
 
 <prev_action>
-1
+0
 </prev_action>
 
 current state:
 <state>
-[0, 1, 0, 0]
+[1, 0, 0, 0]
 </state>
 
 reward is: 1
@@ -115,15 +118,14 @@ reward is: 1
 current model:
 <world model>
 
-action i flips vector i for i=0,1,2,3 and action 4 is no-op
-reward is the sum of ones int the state vector
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 
 </world model>
 
 current policy:
 <policy>
 
-perform action that flips the leftmost bit that is not one. if all bits are ones, perform a no-op.
+If bit 0 is different from target state bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target state bit 1, perform Action 2; If both bit 0 and bit 1 are the same as target state bit 0 and bit 1, but bit 2 is different from target state bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are the same as target state bit 0, bit 1, and bit 2, but bit 3 is different from target state bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are the same as target state bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target state bit 4, perform Action 5.
 
 </policy>
 
@@ -162,22 +164,23 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-thoughts:
-Previous state and action were [0, 1, 0, 0] and 1, respectively. Current state is also [0, 1, 0, 0] with a reward of 1. The world model defines flipping each index of the state vector to obtain the new state and reward. The policy indicates to flip the leftmost bit that is not 1, otherwise perform a no-op.
+
+My thoughts:
+The previous action was "0" and the current state is [1, 0, 0, 0], which is different from the target state [0, 0, 1, 0, 0, 0], this implies that the next action should be "3" to flip the bit 2 in the current state. 
 
 My updated world model is:
 <world model>
-Every action flips the vector at its own index. Action 0 flips index 0, action 1 flips index 1, action 2 flips index 2 and action 3 flips index 3. Lastly, action 4 performs a no-op. Reward is the sum of ones in the new state vector.
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 </world model>
 
 My updated policy is:
 <policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 </policy>
 
-therefore, my next action is
+Therefore, my next action is:
 <action>
-0
+3
 </action>
 ----------------
 
@@ -196,16 +199,16 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[1, 1, 0, 0]
+[1, 0, 0, 1]
 </prev_state>
 
 <prev_action>
-0
+3
 </prev_action>
 
 current state:
 <state>
-[1, 1, 0, 0]
+[1, 0, 0, 1]
 </state>
 
 reward is: 2
@@ -213,14 +216,14 @@ reward is: 2
 current model:
 <world model>
 
-Every action flips the vector at its own index. Action 0 flips index 0, action 1 flips index 1, action 2 flips index 2 and action 3 flips index 3. Lastly, action 4 performs a no-op. Reward is the sum of ones in the new state vector.
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 
 </policy>
 
@@ -259,20 +262,21 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-thoughts:
-The previous state is the same as the current state. The previous action was 0 which flipped the leftmost zero bit in the vector. The action resulted in a reward of 2. The world model states that every action flips the vector at its own index, and that the reward is the sum of the ones in the new state vector. The policy is to always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
 
-My updated world model is:
+Thoughts:
+From the previous state and action, it seems that my policy correctly identified the target bits and activated the appropriate action. The current state matches the target state, so I should not execute any action in this turn. 
+
+My updated world model is: 
 <world model>
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector. 
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 </world model>
 
-My updated policy is:
+My updated policy is:  
 <policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 </policy>
 
-therefore, my next action is
+Therefore, my next action is: 
 <action>
 0
 </action>
@@ -293,7 +297,7 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[0, 1, 0, 0]
+[0, 0, 0, 1]
 </prev_state>
 
 <prev_action>
@@ -302,7 +306,7 @@ previous_state:
 
 current state:
 <state>
-[0, 1, 0, 0]
+[0, 0, 0, 1]
 </state>
 
 reward is: 1
@@ -310,14 +314,14 @@ reward is: 1
 current model:
 <world model>
 
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector. 
+Action 0 is a no-op, Action 1 & 2 are equivalent actions that flip bit 0 or 1 respectively, Action 3 flips bit 2, Action 4 flips bit 3, and Action 5 flips bit 4. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 
 </policy>
 
@@ -356,20 +360,21 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
+
 Thoughts:
-The previous state shows that the second bit is 1. My current policy specifies that I always flip the leftmost zero bit in the vector. Since the second bit is already 1, I will perform a no-op and not flip any bits. The reward is 1, indicating that there is one 1 in the state vector.
+The previous action was 0, which is a no-op. According to our policy, we would check our current state against the target state, and if the target bit 0 is different from our current bit 0, we would perform Action 1.
 
 My updated world model is:
 <world model>
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observed a state vector of length 4. Each action flips one bit in the state vector. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 </world model>
 
 My updated policy is:
 <policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 </policy>
 
-Therefore, my next action is:
+Therefore, my next action is
 <action>
 0
 </action>
@@ -390,7 +395,7 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[1, 1, 0, 0]
+[1, 0, 0, 1]
 </prev_state>
 
 <prev_action>
@@ -399,7 +404,7 @@ previous_state:
 
 current state:
 <state>
-[1, 1, 0, 0]
+[1, 0, 0, 1]
 </state>
 
 reward is: 2
@@ -407,14 +412,14 @@ reward is: 2
 current model:
 <world model>
 
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observed a state vector of length 4. Each action flips one bit in the state vector. The reward is calculated based on the Hamming distance between the current state and [0,0,1,0,0,0].
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5.
 
 </policy>
 
@@ -453,20 +458,23 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-thoughts:
-The previous state is [1, 1, 0, 0] and the previous action was 0, which flipped the leftmost zero bit. The current state is still [1, 1, 0, 0] and the reward is 2. According to my current policy, I should keep performing action 0 until there are no zero bits left in the vector. 
-My world model is simple - every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
-Therefore, my updated policy is:
-<policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits left, perform a no-op.
-</policy>
+
+Thoghts:
+During the last turn, we observed a state vector of [1, 0, 0, 1], and the action we took was action 0. This action flips the 0th bit, thus our new state vector is now [1, 0, 0, 1] which is the same as the previous observed state vector. From our policy, this means that the 0th and 1st bit must be the same as our target bit 0 and bit 1 in order for the action taken to be optimal.
+
 My updated world model is:
 <world model>
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state, which is [0, 0, 1, 0, 0, 0].
 </world model>
-Therefore, my next action is:
+
+My updated policy is:
+<policy>
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5. 
+</policy>
+
+Therefore, my next action is: 
 <action>
-0
+2
 </action>
 ----------------
 
@@ -485,31 +493,31 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[0, 1, 0, 0]
+[1, 0, 1, 1]
 </prev_state>
 
 <prev_action>
-0
+2
 </prev_action>
 
 current state:
 <state>
-[0, 1, 0, 0]
+[1, 0, 1, 1]
 </state>
 
-reward is: 1
+reward is: 3
 
 current model:
 <world model>
 
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state, which is [0, 0, 1, 0, 0, 0].
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there are no zero bits left, perform a no-op.
+If bit 0 is different from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 is different from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, and bit 2, but bit 3 is different from target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 is different from target bit 4, perform Action 5. 
 
 </policy>
 
@@ -548,22 +556,23 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-Thoughts: 
-The previous state and action were [0, 1, 0, 0] and 0, respectively. The current state is the same as the previous state. The reward is 1. Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector. Since the current state has only one '1', and performing action 0 will flip the leftmost zero bit in the vector, I will get a reward of 2. 
+
+Thoughts:
+Previous state and current state are the same, so no need to occupy any tokens for a change in the world model because no change in that state has taken place. Previous action was 2, so the bits 0 and 1 must have been flipped. Bits 0 and 1 should now match the target bit 0 and bit 1. The reward is 3, so the Hamming distance has decreased by 1, meaning one bit has changed. 
 
 My updated world model is:
 <world model>
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. 
 </world model>
 
 My updated policy is:
 <policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there is no zero bit left, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5. 
 </policy>
 
 Therefore, my next action is:
 <action>
-0
+3
 </action>
 ----------------
 
@@ -582,16 +591,16 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[1, 1, 0, 0]
+[1, 0, 1, 0]
 </prev_state>
 
 <prev_action>
-0
+3
 </prev_action>
 
 current state:
 <state>
-[1, 1, 0, 0]
+[1, 0, 1, 0]
 </state>
 
 reward is: 2
@@ -599,14 +608,14 @@ reward is: 2
 current model:
 <world model>
 
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. 
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there is no zero bit left, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5. 
 
 </policy>
 
@@ -645,22 +654,23 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-thoughts:
-The previous state was [1, 1, 0, 0], and the previous action was 0 which flips the leftmost zero bit in the vector. The current state is the same, [1, 1, 0, 0], so there is still one zero bit in the vector. The reward is 2. Based on the policy, I should perform action 0 again to flip the leftmost zero bit in the vector.
+
+Thoughts:
+In the previous state and current state, the bits 0,1,2 were the same, which means that the agent needs to take Action 3 to move closer to the target state [0 0 1 0 0 0].
 
 My updated world model is:
 <world model>
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. For every step closer to the target state, the reward increases by +1.
 </world model>
 
 My updated policy is:
 <policy>
-Always perform action 0 which flips the leftmost zero bit in the vector. If there is no zero bit left, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5.
 </policy>
 
-therefore, my next action is
+Therefore, my next action is:
 <action>
-0
+3
 </action>
 ----------------
 
@@ -679,31 +689,31 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[0, 1, 0, 0]
+[1, 0, 1, 1]
 </prev_state>
 
 <prev_action>
-0
+3
 </prev_action>
 
 current state:
 <state>
-[0, 1, 0, 0]
+[1, 0, 1, 1]
 </state>
 
-reward is: 1
+reward is: 3
 
 current model:
 <world model>
 
-Every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. For every step closer to the target state, the reward increases by +1.
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 0 which flips the leftmost zero bit in the vector. If there is no zero bit left, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5.
 
 </policy>
 
@@ -742,26 +752,23 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
+
 Thoughts:
--The previous state and action indicates that the first bit was flipped in the previous turn;
--The current state is the same as the previous state, and the reward is 1, indicating that the first bit was already flipped before;
--The world model indicates that every action flips the vector at its own index, and the reward is the sum of the ones in the new state vector;
--The action space is discrete and contains the integers 0, 1, 2, 3, 4;
--The state space is a binary vector of length 4.
+The last state was [1,0,1,1], and the last action was 3. To move closer to the target state, if the current bit 3 is different than the target third bit, then we need to perform the Action 4.
 
 My updated world model is:
 <world model>
-Every action flips the bit at its corresponding index. The resulting reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. Each step towards the target state yields a reward of +1. 
 </world model>
 
 My updated policy is:
 <policy>
-Always perform action 1 to flip the second bit. If the second bit is already one, perform action 3 to flip the fourth bit. If all bits are one, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are the same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are the same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5.
 </policy>
 
-Therefore, my next action is:
+therefore, my next action is
 <action>
-1
+4
 </action>
 ----------------
 
@@ -780,31 +787,31 @@ state space is a binary vector of length 4
 
 previous_state:
 <prev_state>
-[0, 0, 0, 0]
+[1, 0, 1, 1]
 </prev_state>
 
 <prev_action>
-1
+4
 </prev_action>
 
 current state:
 <state>
-[0, 0, 0, 0]
+[1, 0, 1, 1]
 </state>
 
-reward is: 0
+reward is: 3
 
 current model:
 <world model>
 
-Every action flips the bit at its corresponding index. The resulting reward is the sum of the ones in the new state vector.
+We observe state vectors of length 4, and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. Each step towards the target state yields a reward of +1. 
 
 </world model>
 
 current policy:
 <policy>
 
-Always perform action 1 to flip the second bit. If the second bit is already one, perform action 3 to flip the fourth bit. If all bits are one, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are the same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are the same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5.
 
 </policy>
 
@@ -843,16 +850,22 @@ Note the length limits of the policy and model, don't exceed them. Abstract them
 
 response:
  ---------- 
-Thoughts:
-In the previous step, the state was all zeros and I performed action 1 according to my policy, which flipped the second bit. The resulting state has still all zeros and therefore the reward is also zero. This matches my world model, since the reward is the number of ones in the new state vector. So, no need to update my world model.
+
+
+Thoughts: The current state is equal to the target state of [0 0 1 0 0 0], so we should take Action 5 which is the action that flips the target bit 4 in the state vector.
+
+My updated world model is:
+<world model>
+We observe state vectors of length 4 and each action flips one bit in the state vector. The reward is determined by the Hamming distance between the current state and the target state [0 0 1 0 0 0]. Each step towards the target state yields a reward of +1. 
+</world model>
 
 My updated policy is:
 <policy>
-Always perform action 1 to flip the second bit. If the second bit is already one, perform action 3 to flip the fourth bit. If all bits are one, perform no-op.
+If bit 0 differs from target bit 0, perform Action 1; If bit 0 is the same, but bit 1 is different from target bit 1, perform Action 2; If both bit 0 and bit 1 are same as target bit 0 and bit 1, but bit 2 differs from target bit 2, perform Action 3; If bit 0, bit 1, and bit 2 are the same as target bit 0, bit 1, bit 2, but bit 3 differs from the target bit 3, perform Action 4; If bit 0, bit 1, bit 2, and bit 3 are the same as target bit 0, bit 1, bit 2, and bit 3, but bit 4 differs from target bit 4, perform Action 5.
 </policy>
 
 Therefore, my next action is:
 <action>
-1
+5
 </action>
 ----------------
